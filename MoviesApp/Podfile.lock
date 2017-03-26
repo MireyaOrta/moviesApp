@@ -4,6 +4,7 @@ PODS:
     - Alamofire (~> 4.1)
   - CellRegistrable (1.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - Hero (0.3.6)
   - HexColors (4.0.0)
   - Realm (2.1.0):
     - Realm/Headers (= 2.1.0)
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.1)
   - CellRegistrable (from `https://github.com/KogiMobileSAS/CellRegistrable.git`, branch `swift3`)
   - DZNEmptyDataSet
+  - Hero (from `https://github.com/lkzhao/Hero.git`)
   - HexColors
   - RealmSwift
   - RxBlocking (~> 3.0)
@@ -37,17 +39,23 @@ EXTERNAL SOURCES:
   CellRegistrable:
     :branch: swift3
     :git: https://github.com/KogiMobileSAS/CellRegistrable.git
+  Hero:
+    :git: https://github.com/lkzhao/Hero.git
 
 CHECKOUT OPTIONS:
   CellRegistrable:
     :commit: e495548d02e8016f9f91bc879b17e6ac2540556b
     :git: https://github.com/KogiMobileSAS/CellRegistrable.git
+  Hero:
+    :commit: 5fe9a6c247253c6632b3e008989c3b3e61ec1627
+    :git: https://github.com/lkzhao/Hero.git
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   AlamofireImage: 157ed682cc81d3b9db4fb90c1f12180ac552d93b
   CellRegistrable: 41f82dba61e7ee4b83487ead19d09374faa2cca1
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Hero: 772f4ff71e757e94d88a7bc38fc66eb8bd0a9c0d
   HexColors: 5f95843ef89aff6a72e1fd3a8ebabf205cc43379
   Realm: bc829ad0ef3d4eea70c34cfcc3b1704d18d50df1
   RealmSwift: a4d4abbf0088c337cab5b738054395842e4b3052
@@ -58,6 +66,6 @@ SPEC CHECKSUMS:
   Unbox: 03d7128ce429987986bc08d967e9d5e0da158946
   Wrap: ab30deba122bf5942aca8bc65d91d12d45a901dc
 
-PODFILE CHECKSUM: 7f5342ae1d6643b6ab09fae36ef169dd44a2e146
+PODFILE CHECKSUM: 7180d48b73a2ad8b4a949c619d1c5813dd33ec43
 
 COCOAPODS: 1.1.1

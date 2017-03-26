@@ -22,9 +22,6 @@ target 'MoviesApp' do
   pod 'RxCocoa',    '~> 3.0'
   pod 'RxBlocking', '~> 3.0'
 
-  #Animations
-  pod 'Hero', :git => 'https://github.com/lkzhao/Hero.git'
-
 end
 
 post_install do |installer|
