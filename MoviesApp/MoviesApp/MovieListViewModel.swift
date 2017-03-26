@@ -41,10 +41,13 @@ class MovieListViewModel {
         if more {
             page += 1
         }
-        
         switch viewTitle {
         case LocalizableString.popular.localizedString:
             getPopularMovies()
+        case LocalizableString.topRated.localizedString:
+            getTopRatedMovies()
+        case LocalizableString.upcoming.localizedString:
+            getTopRatedMovies()
         default:
             break
         }
@@ -66,7 +69,40 @@ class MovieListViewModel {
             })
             .subscribe()
             .addDisposableTo(disposeBag)
+    }
     
+    func getTopRatedMovies() {
+        MovieAPI.getTopRated(page: self.page)
+            .do(onNext: { (moviesItems) in
+                if self.page > 1 {
+                    self.movies?.append(contentsOf: moviesItems)
+                }else{
+                    self.movies = moviesItems
+                }
+                
+            }, onError: { (error) in
+                let error = error as? ApiError ?? ApiError.defaultError
+                self.viewDelegate?.showAlertError(viewModel: self, error: error)
+            })
+            .subscribe()
+            .addDisposableTo(disposeBag)
+    }
+    
+    func getUpcomingMovies() {
+        MovieAPI.getUpcoming(page: self.page)
+            .do(onNext: { (moviesItems) in
+                if self.page > 1 {
+                    self.movies?.append(contentsOf: moviesItems)
+                }else{
+                    self.movies = moviesItems
+                }
+                
+            }, onError: { (error) in
+                let error = error as? ApiError ?? ApiError.defaultError
+                self.viewDelegate?.showAlertError(viewModel: self, error: error)
+            })
+            .subscribe()
+            .addDisposableTo(disposeBag)
     }
     
     func numberOfMoviesSections() -> Int {

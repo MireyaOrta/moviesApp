@@ -45,4 +45,62 @@ struct MovieNetworkService {
             return Disposables.create()
         }
     }
+    
+    static func getTopRatedMovies(page: Int) -> Observable<[Movie]> {
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            Alamofire.request(Router.getTopRated(page))
+                .validate()
+                .responseData { (response) in
+                    
+                    switch response.result {
+                    case .success(let jsonData):
+                        
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
+                            observer.onError(ApiError.defaultError)
+                            break
+                        }
+                        
+                        observer.onNext(movies)
+                        observer.onCompleted()
+                        
+                    case .failure(let error):
+                        let apiError = ApiError(error: error, data:  response.data) ?? .defaultError
+                        observer.onError(apiError)
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
+    
+    static func getUpcomingMovies(page: Int) -> Observable<[Movie]> {
+        
+        return Observable.create { (observer) -> Disposable in
+            
+            Alamofire.request(Router.getUpcoming(page))
+                .validate()
+                .responseData { (response) in
+                    
+                    switch response.result {
+                    case .success(let jsonData):
+                        
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
+                            observer.onError(ApiError.defaultError)
+                            break
+                        }
+                        
+                        observer.onNext(movies)
+                        observer.onCompleted()
+                        
+                    case .failure(let error):
+                        let apiError = ApiError(error: error, data:  response.data) ?? .defaultError
+                        observer.onError(apiError)
+                    }
+            }
+            
+            return Disposables.create()
+        }
+    }
 }

@@ -24,8 +24,10 @@ enum Router {
         return "\(Router.baseHostPath)\(Router.versionPath)\(Router.movie)"
     }
     
-    // Popular
+    // Movies
     case getPopular(Int)
+    case getTopRated(Int)
+    case getUpcoming(Int)
     
 }
 
@@ -59,6 +61,21 @@ extension Router {
                            path: "/popular",
                            parameters: parameters,
                            encoding: URLEncoding.default)
+            
+        case .getTopRated(let pageValue):
+            let parameters: JSONDictionary = ["api_key": Router.apiKey as AnyObject, "page": pageValue as AnyObject]
+            return Request(method: .get,
+                           path: "/top_rated",
+                           parameters: parameters,
+                           encoding: URLEncoding.default)
+            
+        case .getUpcoming(let pageValue):
+            let parameters: JSONDictionary = ["api_key": Router.apiKey as AnyObject, "page": pageValue as AnyObject]
+            return Request(method: .get,
+                           path: "/upcoming",
+                           parameters: parameters,
+                           encoding: URLEncoding.default)
+
         }
     }
 }

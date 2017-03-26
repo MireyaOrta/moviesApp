@@ -82,7 +82,13 @@ extension HomeViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.showMoviewResult(indexPath.row)
+        switch indexPath.row {
+        case 0:
+            print("search")
+        default:
+            viewModel.showMoviewResult(indexPath.row)
+        }
+        
     }
 }
 
