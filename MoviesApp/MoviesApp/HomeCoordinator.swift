@@ -25,9 +25,25 @@ class HomeCoordinator: Coordinator {
     }
     
     func start() {
-        let homeVC = HomeViewController()
+        let homeVM = HomeViewModel()
+        homeVM.coordinatorDelegate = self
+        let homeVC = HomeViewController(viewModel: homeVM)
+        navigationController.tabBarController?.tabBar.isHidden = true
         navigationController.setViewControllers([homeVC], animated: false)
     }
-    
+ 
+    func showMovieList(title: String) {
+        let movieListVM = MovieListViewModel()
+        movieListVM.viewTitle = title
+        let moviewListVC = MovieListViewController(viewModel: movieListVM)
+        navigationController.pushViewController(moviewListVC, animated: true)
+    }
+}
+
+// MARK: - HomeViewModelCoordinatorDelegate
+extension HomeCoordinator: HomeViewModelCoordinatorDelegate {
+    func homeViewModelShowMoviewList(viewModel: HomeViewModel, title: String) {
+        showMovieList(title: title)
+    }
 }
 
