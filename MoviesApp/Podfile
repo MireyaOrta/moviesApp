@@ -12,11 +12,8 @@ target 'MoviesApp' do
   pod 'Wrap', '~> 2.0'
   pod 'Unbox', '~> 2.2.0'
   pod 'RealmSwift'
-  pod 'SVProgressHUD'
   pod 'AlamofireImage', '~> 3.1'
-  pod 'DZNEmptyDataSet'
  
-
   #RxSwift
   pod 'RxSwift',    '~> 3.0'
   pod 'RxCocoa',    '~> 3.0'
