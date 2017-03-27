@@ -12,13 +12,13 @@ import RxSwift
 
 struct MovieAPI {
     
-    static func getPopular(page: Int) -> Observable<[Movie]>{
+    static func getPopular(page: Int) -> Observable<Popular>{
         return MovieNetworkService.getPopularMovies(page: page)
     }
-    static func getTopRated(page: Int) -> Observable<[Movie]>{
+    static func getTopRated(page: Int) -> Observable<TopRated>{
         return MovieNetworkService.getTopRatedMovies(page: page)
     }
-    static func getUpcoming(page: Int) -> Observable<[Movie]>{
+    static func getUpcoming(page: Int) -> Observable<Upcoming>{
         return MovieNetworkService.getUpcomingMovies(page: page)
     }
 }

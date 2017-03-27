@@ -17,7 +17,7 @@ struct MovieNetworkService {
         static let result = "results"
     }
     
-    static func getPopularMovies(page: Int) -> Observable<[Movie]> {
+    static func getPopularMovies(page: Int) -> Observable<Popular> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -28,7 +28,7 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: Popular = try? unbox(dictionary: jsonDictionary) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }
@@ -46,7 +46,7 @@ struct MovieNetworkService {
         }
     }
     
-    static func getTopRatedMovies(page: Int) -> Observable<[Movie]> {
+    static func getTopRatedMovies(page: Int) -> Observable<TopRated> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -57,7 +57,7 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: TopRated = try? unbox(dictionary: jsonDictionary) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }
@@ -75,7 +75,7 @@ struct MovieNetworkService {
         }
     }
     
-    static func getUpcomingMovies(page: Int) -> Observable<[Movie]> {
+    static func getUpcomingMovies(page: Int) -> Observable<Upcoming> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -86,7 +86,7 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: Upcoming = try? unbox(dictionary: jsonDictionary) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }

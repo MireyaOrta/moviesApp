@@ -33,7 +33,7 @@ class HomeViewModel {
     }
     
     func getMenuSections(){
-        menuSections = [LocalizableString.search.localizedString, LocalizableString.popular.localizedString, LocalizableString.topRated.localizedString, LocalizableString.upcoming.localizedString]
+        menuSections = [LocalizableString.popular.localizedString, LocalizableString.topRated.localizedString, LocalizableString.upcoming.localizedString]
     }
     
     func numberOfMenuSections() -> Int {

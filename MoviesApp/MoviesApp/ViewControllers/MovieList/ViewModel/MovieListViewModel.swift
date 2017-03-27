@@ -37,6 +37,25 @@ class MovieListViewModel {
         }
     }
     
+    var topRated: TopRated? {
+        didSet{
+            movies = topRated?.movies.map { $0 }
+        }
+    }
+    
+    var upcoming: Upcoming? {
+        didSet{
+            movies = upcoming?.movies.map { $0 }
+        }
+    }
+    
+    var popular: Popular? {
+        didSet{
+            movies = popular?.movies.map { $0 }
+        }
+    }
+    
+    
     func getMovies(_ more: Bool = false) {
         if more {
             page += 1
@@ -58,11 +77,11 @@ class MovieListViewModel {
         MovieAPI.getPopular(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.movies?.append(contentsOf: moviesItems)
+                    self.popular?.movies.append(contentsOf: moviesItems.movies)
+                    self.movies = self.popular?.movies.map { $0 }
                 }else{
-                    self.movies = moviesItems
+                    self.popular = moviesItems
                 }
-                
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
                 self.viewDelegate?.showAlertError(viewModel: self, error: error)
@@ -75,11 +94,11 @@ class MovieListViewModel {
         MovieAPI.getTopRated(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.movies?.append(contentsOf: moviesItems)
+                    self.topRated?.movies.append(contentsOf: moviesItems.movies)
+                    self.movies = self.topRated?.movies.map { $0 }
                 }else{
-                    self.movies = moviesItems
+                    self.topRated = moviesItems
                 }
-                
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
                 self.viewDelegate?.showAlertError(viewModel: self, error: error)
@@ -92,11 +111,11 @@ class MovieListViewModel {
         MovieAPI.getUpcoming(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.movies?.append(contentsOf: moviesItems)
+                    self.upcoming?.movies.append(contentsOf: moviesItems.movies)
+                    self.movies = self.upcoming?.movies.map { $0 }
                 }else{
-                    self.movies = moviesItems
+                    self.upcoming = moviesItems
                 }
-                
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
                 self.viewDelegate?.showAlertError(viewModel: self, error: error)
