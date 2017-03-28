@@ -19,6 +19,8 @@ target 'MoviesApp' do
   pod 'RxCocoa',    '~> 3.0'
   pod 'RxBlocking', '~> 3.0'
   pod 'RxRealm'
+  
+  pod 'ReachabilitySwift', '~> 3'
  
 end
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RealmSwift
 
 protocol MovieListViewModelViewDelegate: class {
     func listDidChange(viewModel: MovieListViewModel)
@@ -27,6 +28,10 @@ class MovieListViewModel {
     
     fileprivate var page = 1
     fileprivate let disposeBag = DisposeBag()
+    
+    private var realm: Realm {
+        return try! Realm()
+    }
     
     var movies: [Movie]? {
         didSet{
@@ -77,8 +82,17 @@ class MovieListViewModel {
         MovieAPI.getPopular(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.popular?.movies.append(contentsOf: moviesItems.movies)
-                    self.movies = self.popular?.movies.map { $0 }
+                    do {
+                        self.realm.beginWrite()
+                        let realPopular = self.realm.objects(Popular.self)
+                        if (self.popular?.movies.count)! < realPopular.count {
+                            self.popular?.movies.append(contentsOf: moviesItems.movies)
+                        }
+                        try self.realm.commitWrite()
+                        self.movies = self.popular?.movies.map { $0 }
+                    }catch let error {
+                        print(error.localizedDescription)
+                    }
                 }else{
                     self.popular = moviesItems
                 }
@@ -94,7 +108,17 @@ class MovieListViewModel {
         MovieAPI.getTopRated(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.topRated?.movies.append(contentsOf: moviesItems.movies)
+                    do {
+                        self.realm.beginWrite()
+                        let realTopRated = self.realm.objects(TopRated.self)
+                        if (self.topRated?.movies.count)! < realTopRated.count {
+                            self.topRated?.movies.append(contentsOf: moviesItems.movies)
+                        }
+                        try self.realm.commitWrite()
+                        self.movies = self.popular?.movies.map { $0 }
+                    }catch let error {
+                        print(error.localizedDescription)
+                    }
                     self.movies = self.topRated?.movies.map { $0 }
                 }else{
                     self.topRated = moviesItems
@@ -111,7 +135,18 @@ class MovieListViewModel {
         MovieAPI.getUpcoming(page: self.page)
             .do(onNext: { (moviesItems) in
                 if self.page > 1 {
-                    self.upcoming?.movies.append(contentsOf: moviesItems.movies)
+                    do {
+                        self.realm.beginWrite()
+                        let realUpcoming = self.realm.objects(Upcoming.self)
+                        if (self.upcoming?.movies.count)! < realUpcoming.count {
+                            self.upcoming?.movies.append(contentsOf: moviesItems.movies)
+                        }
+                        try self.realm.commitWrite()
+                        self.movies = self.popular?.movies.map { $0 }
+                    }catch let error {
+                        print(error.localizedDescription)
+                    }
+                    
                     self.movies = self.upcoming?.movies.map { $0 }
                 }else{
                     self.upcoming = moviesItems

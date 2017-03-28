@@ -82,7 +82,7 @@ extension MovieDetailViewController: MovieDetailViewModelViewDelegate {
             
             popularityCountLabel.text = movie.popularity
             
-            if let video = movie.video, video {
+            if let video = movie.video.value, video {
                 goToTrailer.backgroundColor = Color.orange.color
             }
         }

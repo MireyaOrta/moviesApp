@@ -33,6 +33,7 @@ struct MovieNetworkService {
                             break
                         }
                         
+                        MovieDiskService.savePopularMovies(movies: movies)
                         observer.onNext(movies)
                         observer.onCompleted()
                         
@@ -62,6 +63,7 @@ struct MovieNetworkService {
                             break
                         }
                         
+                        MovieDiskService.saveTopRatedMovies(movies: movies)
                         observer.onNext(movies)
                         observer.onCompleted()
                         
@@ -91,6 +93,7 @@ struct MovieNetworkService {
                             break
                         }
                         
+                        MovieDiskService.saveUpcomingMovies(movies: movies)
                         observer.onNext(movies)
                         observer.onCompleted()
                         

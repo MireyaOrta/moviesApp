@@ -15,7 +15,7 @@ class Popular: Object, Unboxable {
     //MARK: - Properties
     dynamic var localId: String = NSUUID().uuidString
     var movies = List<Movie>()
-    var totalPages: Int?
+    dynamic var totalPages = 0
     
     // MARK: - Enums and Structs
     fileprivate struct JSONKey {
@@ -28,7 +28,10 @@ class Popular: Object, Unboxable {
     required convenience init(unboxer: Unboxer) {
         self.init()
         localId = unboxer.unbox(key: JSONKey.localId) ?? NSUUID().uuidString
-        totalPages = unboxer.unbox(key: JSONKey.totalPages)
+        let pages: Int? = unboxer.unbox(key: JSONKey.totalPages)
+        if let pagesAux = pages {
+            totalPages = pagesAux
+        }
         
         let movies: [Movie]? = unboxer.unbox(key: JSONKey.movies)
         if movies != nil {

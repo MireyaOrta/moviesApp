@@ -9,16 +9,32 @@
 import Foundation
 import Alamofire
 import RxSwift
+import ReachabilitySwift
 
 struct MovieAPI {
+
+   
+    private static let reachability = Reachability()!
     
     static func getPopular(page: Int) -> Observable<Popular>{
-        return MovieNetworkService.getPopularMovies(page: page)
+        
+        //Internet Conection
+       if  reachability.isReachable { 
+           return MovieNetworkService.getPopularMovies(page: page)
+        }
+        return MovieDiskService.getPopularMovies()
+        
     }
     static func getTopRated(page: Int) -> Observable<TopRated>{
-        return MovieNetworkService.getTopRatedMovies(page: page)
+        if  reachability.isReachable {
+            return MovieNetworkService.getTopRatedMovies(page: page)
+        }
+        return MovieDiskService.getTopRatedMovies()
     }
     static func getUpcoming(page: Int) -> Observable<Upcoming>{
-        return MovieNetworkService.getUpcomingMovies(page: page)
+        if  reachability.isReachable {
+            return MovieNetworkService.getUpcomingMovies(page: page)
+        }
+        return MovieDiskService.getUpcomingMovies()
     }
 }
