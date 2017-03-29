@@ -12,7 +12,9 @@ enum LocalizableString: String {
     
     //MARK: - Global
     case movies = "Movies"
-    case ok = "Ok" 
+    case ok = "Ok"
+    case empty = "No Movies"
+    
     //MARK: - Home
     case topRated = "Top rated"
     case popular = "Popular"

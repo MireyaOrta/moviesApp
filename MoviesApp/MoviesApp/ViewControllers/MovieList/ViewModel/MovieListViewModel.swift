@@ -26,8 +26,11 @@ class MovieListViewModel {
     
     var viewTitle: String!
     
-    fileprivate var page = 1
+    
     fileprivate let disposeBag = DisposeBag()
+    
+    var page = 1
+    var noSearch: Bool = true
     
     private var realm: Realm {
         return try! Realm()
@@ -41,26 +44,7 @@ class MovieListViewModel {
             }
         }
     }
-    
-    var topRated: TopRated? {
-        didSet{
-            movies = topRated?.movies.map { $0 }
-        }
-    }
-    
-    var upcoming: Upcoming? {
-        didSet{
-            movies = upcoming?.movies.map { $0 }
-        }
-    }
-    
-    var popular: Popular? {
-        didSet{
-            movies = popular?.movies.map { $0 }
-        }
-    }
-    
-    
+
     func getMovies(_ more: Bool = false) {
         if more {
             page += 1
@@ -84,17 +68,16 @@ class MovieListViewModel {
                 if self.page > 1 {
                     do {
                         self.realm.beginWrite()
-                        let realPopular = self.realm.objects(Popular.self)
-                        if (self.popular?.movies.count)! < realPopular.count {
-                            self.popular?.movies.append(contentsOf: moviesItems.movies)
+                        let realPopular = self.realm.objects(Movie.self).filter("popular == true")
+                        if (self.movies?.count)! < realPopular.count && self.noSearch {
+                            self.movies?.append(contentsOf: moviesItems)
                         }
                         try self.realm.commitWrite()
-                        self.movies = self.popular?.movies.map { $0 }
                     }catch let error {
                         print(error.localizedDescription)
                     }
                 }else{
-                    self.popular = moviesItems
+                    self.movies = moviesItems
                 }
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
@@ -110,18 +93,18 @@ class MovieListViewModel {
                 if self.page > 1 {
                     do {
                         self.realm.beginWrite()
-                        let realTopRated = self.realm.objects(TopRated.self)
-                        if (self.topRated?.movies.count)! < realTopRated.count {
-                            self.topRated?.movies.append(contentsOf: moviesItems.movies)
+                        let realTopRated = self.realm.objects(Movie.self).filter("topRated == true")
+                        if (self.movies?.count)! < realTopRated.count && self.noSearch {
+                            self.movies?.append(contentsOf: moviesItems)
                         }
                         try self.realm.commitWrite()
-                        self.movies = self.popular?.movies.map { $0 }
+                
                     }catch let error {
                         print(error.localizedDescription)
                     }
-                    self.movies = self.topRated?.movies.map { $0 }
+                    
                 }else{
-                    self.topRated = moviesItems
+                    self.movies = moviesItems
                 }
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
@@ -137,19 +120,19 @@ class MovieListViewModel {
                 if self.page > 1 {
                     do {
                         self.realm.beginWrite()
-                        let realUpcoming = self.realm.objects(Upcoming.self)
-                        if (self.upcoming?.movies.count)! < realUpcoming.count {
-                            self.upcoming?.movies.append(contentsOf: moviesItems.movies)
+                        let realTopRated = self.realm.objects(Movie.self).filter("upcoming == true")
+                        if (self.movies?.count)! < realTopRated.count && self.noSearch {
+                            self.movies?.append(contentsOf: moviesItems)
                         }
                         try self.realm.commitWrite()
-                        self.movies = self.popular?.movies.map { $0 }
+                    
                     }catch let error {
                         print(error.localizedDescription)
                     }
                     
-                    self.movies = self.upcoming?.movies.map { $0 }
+                 
                 }else{
-                    self.upcoming = moviesItems
+                    self.movies = moviesItems
                 }
             }, onError: { (error) in
                 let error = error as? ApiError ?? ApiError.defaultError
@@ -157,6 +140,20 @@ class MovieListViewModel {
             })
             .subscribe()
             .addDisposableTo(disposeBag)
+    }
+    
+    func searchPopularMovies(search: String) {
+        noSearch = false
+        MovieAPI.searchMovies(s: search, c: viewTitle)
+            .do(onNext: { (moviesItems) in
+                    self.movies = moviesItems
+            }, onError: { (error) in
+                let error = error as? ApiError ?? ApiError.defaultError
+                self.viewDelegate?.showAlertError(viewModel: self, error: error)
+            })
+            .subscribe()
+            .addDisposableTo(disposeBag)
+
     }
     
     func numberOfMoviesSections() -> Int {

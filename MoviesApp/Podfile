@@ -21,7 +21,7 @@ target 'MoviesApp' do
   pod 'RxRealm'
   
   pod 'ReachabilitySwift', '~> 3'
- 
+  pod 'DZNEmptyDataSet'
 end
 
 post_install do |installer|

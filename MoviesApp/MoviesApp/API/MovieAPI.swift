@@ -16,25 +16,29 @@ struct MovieAPI {
    
     private static let reachability = Reachability()!
     
-    static func getPopular(page: Int) -> Observable<Popular>{
+    static func getPopular(page: Int) -> Observable<[Movie]>{
         
         //Internet Conection
        if  reachability.isReachable { 
            return MovieNetworkService.getPopularMovies(page: page)
         }
-        return MovieDiskService.getPopularMovies()
+        return MovieDiskService.getMovies(category: LocalizableString.popular.localizedString)
         
     }
-    static func getTopRated(page: Int) -> Observable<TopRated>{
+    static func getTopRated(page: Int) -> Observable<[Movie]>{
         if  reachability.isReachable {
             return MovieNetworkService.getTopRatedMovies(page: page)
         }
-        return MovieDiskService.getTopRatedMovies()
+         return MovieDiskService.getMovies(category: LocalizableString.topRated.localizedString)
     }
-    static func getUpcoming(page: Int) -> Observable<Upcoming>{
+    static func getUpcoming(page: Int) -> Observable<[Movie]>{
         if  reachability.isReachable {
             return MovieNetworkService.getUpcomingMovies(page: page)
         }
-        return MovieDiskService.getUpcomingMovies()
+         return MovieDiskService.getMovies(category: LocalizableString.upcoming.localizedString)
+    }
+    
+    static func searchMovies(s: String?, c: String) -> Observable<[Movie]> {
+       return MovieDiskService.searchMovies(search: s, category: c)
     }
 }

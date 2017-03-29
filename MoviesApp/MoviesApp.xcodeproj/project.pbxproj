@@ -38,9 +38,6 @@
 		D2315B341E87B77B00AC66A9 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2315B321E87B77B00AC66A9 /* MovieDetailViewController.xib */; };
 		D2ADA53E1E882274001A9172 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA53D1E882274001A9172 /* MovieDetailViewModel.swift */; };
 		D2ADA5411E8842E6001A9172 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA5401E8842E6001A9172 /* Color.swift */; };
-		D2ADA54B1E889DA6001A9172 /* TopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA54A1E889DA6001A9172 /* TopRated.swift */; };
-		D2ADA54F1E88AC2C001A9172 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA54E1E88AC2C001A9172 /* Popular.swift */; };
-		D2ADA5511E88AC7E001A9172 /* Upcoming.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA5501E88AC7E001A9172 /* Upcoming.swift */; };
 		D2ADA5531E88B56F001A9172 /* MovieDiskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ADA5521E88B56F001A9172 /* MovieDiskService.swift */; };
 /* End PBXBuildFile section */
 
@@ -80,9 +77,6 @@
 		D2315B321E87B77B00AC66A9 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		D2ADA53D1E882274001A9172 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		D2ADA5401E8842E6001A9172 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
-		D2ADA54A1E889DA6001A9172 /* TopRated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopRated.swift; sourceTree = "<group>"; };
-		D2ADA54E1E88AC2C001A9172 /* Popular.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
-		D2ADA5501E88AC7E001A9172 /* Upcoming.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Upcoming.swift; sourceTree = "<group>"; };
 		D2ADA5521E88B56F001A9172 /* MovieDiskService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDiskService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,9 +249,6 @@
 			isa = PBXGroup;
 			children = (
 				D2315B0A1E87734D00AC66A9 /* Movie.swift */,
-				D2ADA54A1E889DA6001A9172 /* TopRated.swift */,
-				D2ADA54E1E88AC2C001A9172 /* Popular.swift */,
-				D2ADA5501E88AC7E001A9172 /* Upcoming.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -481,7 +472,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2315B0B1E87734D00AC66A9 /* Movie.swift in Sources */,
-				D2ADA54F1E88AC2C001A9172 /* Popular.swift in Sources */,
 				D2315B271E878F7800AC66A9 /* ApiError.swift in Sources */,
 				D2ADA5411E8842E6001A9172 /* Color.swift in Sources */,
 				D2315AFD1E875B6F00AC66A9 /* Asset.swift in Sources */,
@@ -496,14 +486,12 @@
 				D2315B291E878FE200AC66A9 /* ErrorPresentable.swift in Sources */,
 				D2315AF91E8757C200AC66A9 /* HomeCoordinator.swift in Sources */,
 				D2315B2E1E87A56700AC66A9 /* UIImageView+URL.swift in Sources */,
-				D2ADA5511E88AC7E001A9172 /* Upcoming.swift in Sources */,
 				D2315B121E877CCD00AC66A9 /* MovieListViewController.swift in Sources */,
 				D2315B071E876D7A00AC66A9 /* HomeTableViewCell.swift in Sources */,
 				D2315B1F1E878B6900AC66A9 /* Router.swift in Sources */,
 				D2315AD31E8744DD00AC66A9 /* AppDelegate.swift in Sources */,
 				D2315B251E878F2700AC66A9 /* NSData+JSONDictionary.swift in Sources */,
 				D2315AF51E87577500AC66A9 /* HomeViewController.swift in Sources */,
-				D2ADA54B1E889DA6001A9172 /* TopRated.swift in Sources */,
 				D2315B221E878E2200AC66A9 /* MovieNetworkService.swift in Sources */,
 				D2315B2B1E87907B00AC66A9 /* MovieAPI.swift in Sources */,
 				D2315B161E877FEB00AC66A9 /* MovieListViewModel.swift in Sources */,

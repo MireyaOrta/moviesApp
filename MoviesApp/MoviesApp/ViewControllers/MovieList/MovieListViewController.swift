@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
+import CellRegistrable
 
 class MovieListViewController: UIViewController {
 
@@ -16,6 +18,7 @@ class MovieListViewController: UIViewController {
     
     //MARK: - Properties
     var viewModel: MovieListViewModel
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: Lifecycle
     
@@ -45,6 +48,12 @@ class MovieListViewController: UIViewController {
     fileprivate func configureNavigationBar() {
         listTitleLabel.text = viewModel.viewTitle
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        definesPresentationContext = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        navigationItem.titleView = searchController.searchBar
     }
     
     fileprivate func configureTableView(){
@@ -53,6 +62,7 @@ class MovieListViewController: UIViewController {
         tableView.estimatedRowHeight = 350
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.emptyDataSetSource = self
     }
 
 }
@@ -108,3 +118,41 @@ extension MovieListViewController: MovieListViewModelViewDelegate {
     }
     
 }
+
+// MARK: - UISearchBarDelegate
+extension MovieListViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.isFirstResponder {
+            viewModel.page = 1
+            viewModel.getMovies()
+        }
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.page = 1
+        viewModel.getMovies()
+        
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension MovieListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if searchController.searchBar.text != "" {
+            viewModel.searchPopularMovies(search: searchController.searchBar.text!)
+        }
+    }
+}
+
+// MARK: - DZNEmptyDataSetSource
+extension MovieListViewController: DZNEmptyDataSetSource{
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        let myBagEmptyText = LocalizableString.empty.localizedString
+        let attribute = [ NSForegroundColorAttributeName: Color.orange.color]
+        return NSAttributedString(string: myBagEmptyText, attributes: attribute)
+    }
+}
+

@@ -14,7 +14,7 @@ class Movie: Object, Unboxable {
     
     //MARK: - Properties
     dynamic var localId: String = NSUUID().uuidString
-    let movieId = RealmOptional<Int>()
+  
     dynamic var title: String? = nil
     dynamic var popularity: String? = nil
     dynamic var overview: String? = nil
@@ -22,9 +22,13 @@ class Movie: Object, Unboxable {
     let video = RealmOptional<Bool>()
     dynamic var posterUrl: String = "https://image.tmdb.org/t/p/w342/"
     dynamic var posterPath: String? = nil
+    dynamic var popular = false
+    dynamic var topRated = false
+    dynamic var upcoming = false
     
     // MARK: - Enums and Structs
     fileprivate struct JSONKey {
+        static let localId = "databaseId"
         static let movieId = "id"
         static let title = "title"
         static let popularity = "popularity"
@@ -36,20 +40,18 @@ class Movie: Object, Unboxable {
     // MARK: - Initializers
     required convenience init(unboxer: Unboxer) {
         self.init()
-        
         title = unboxer.unbox(key: JSONKey.title)
         popularity = unboxer.unbox(key: JSONKey.popularity)
         overview = unboxer.unbox(key: JSONKey.overview)
         posterPath = unboxer.unbox(key: JSONKey.posterPath)
-        
+        do {
+        localId = try unboxer.unbox(key: JSONKey.movieId)
+        }catch let error{
+            print(error)
+        }
         var video: Int? = unboxer.unbox(key: JSONKey.video)
         if let videoUnr = video {
             video = videoUnr
-        }
-        
-        var movieId: Int? = unboxer.unbox(key: JSONKey.video)
-        if let movieIdUnr = movieId {
-            movieId = movieIdUnr
         }
         
     }

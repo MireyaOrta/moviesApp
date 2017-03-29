@@ -17,7 +17,7 @@ struct MovieNetworkService {
         static let result = "results"
     }
     
-    static func getPopularMovies(page: Int) -> Observable<Popular> {
+    static func getPopularMovies(page: Int) -> Observable<[Movie]> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -28,12 +28,12 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: Popular = try? unbox(dictionary: jsonDictionary) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }
                         
-                        MovieDiskService.savePopularMovies(movies: movies)
+                        MovieDiskService.saveMovies(movies: movies, category: LocalizableString.popular.localizedString)
                         observer.onNext(movies)
                         observer.onCompleted()
                         
@@ -47,7 +47,7 @@ struct MovieNetworkService {
         }
     }
     
-    static func getTopRatedMovies(page: Int) -> Observable<TopRated> {
+    static func getTopRatedMovies(page: Int) -> Observable<[Movie]> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -58,12 +58,12 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: TopRated = try? unbox(dictionary: jsonDictionary) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }
                         
-                        MovieDiskService.saveTopRatedMovies(movies: movies)
+                        MovieDiskService.saveMovies(movies: movies, category: LocalizableString.topRated.localizedString)
                         observer.onNext(movies)
                         observer.onCompleted()
                         
@@ -77,7 +77,7 @@ struct MovieNetworkService {
         }
     }
     
-    static func getUpcomingMovies(page: Int) -> Observable<Upcoming> {
+    static func getUpcomingMovies(page: Int) -> Observable<[Movie]> {
         
         return Observable.create { (observer) -> Disposable in
             
@@ -88,12 +88,12 @@ struct MovieNetworkService {
                     switch response.result {
                     case .success(let jsonData):
                         
-                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: Upcoming = try? unbox(dictionary: jsonDictionary) else {
+                        guard let jsonDictionary = jsonData.toJSONDictionary(), let movies: [Movie] = try? unbox(dictionary: jsonDictionary, atKey: Key.result) else {
                             observer.onError(ApiError.defaultError)
                             break
                         }
                         
-                        MovieDiskService.saveUpcomingMovies(movies: movies)
+                        MovieDiskService.saveMovies(movies: movies, category: LocalizableString.upcoming.localizedString)
                         observer.onNext(movies)
                         observer.onCompleted()
                         
