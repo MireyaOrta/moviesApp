@@ -51,7 +51,6 @@ class MovieDetailViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
     }
     // MARK: - Helpers
-    
     fileprivate func configureView(){
         overviewTitleLabel.text = LocalizableString.overviw.localizedString
         popularityTitleLabel.text = LocalizableString.popularity.localizedString

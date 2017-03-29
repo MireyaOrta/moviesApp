@@ -10,6 +10,7 @@ import UIKit
 import DZNEmptyDataSet
 import CellRegistrable
 
+
 class MovieListViewController: UIViewController {
 
     //MARK: - IBOutlet

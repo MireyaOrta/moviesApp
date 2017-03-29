@@ -22,6 +22,8 @@ target 'MoviesApp' do
   
   pod 'ReachabilitySwift', '~> 3'
   pod 'DZNEmptyDataSet'
+  pod 'Hero', :git => 'https://github.com/lkzhao/Hero.git'
+  
 end
 
 post_install do |installer|
