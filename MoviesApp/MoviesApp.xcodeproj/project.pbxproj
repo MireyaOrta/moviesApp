@@ -292,8 +292,8 @@
 		D2315B201E878E0E00AC66A9 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				D2315B211E878E2200AC66A9 /* MovieNetworkService.swift */,
 				D2ADA5521E88B56F001A9172 /* MovieDiskService.swift */,
+				D2315B211E878E2200AC66A9 /* MovieNetworkService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 				D2315B2D1E87A56700AC66A9 /* UIImageView+URL.swift */,
 			);
 			name = Extensions;
-			path = Helpers;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D2315B301E87B75600AC66A9 /* MovieDetail */ = {
@@ -333,6 +333,7 @@
 				D2ADA53D1E882274001A9172 /* MovieDetailViewModel.swift */,
 			);
 			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		D2ADA53F1E8842D2001A9172 /* Color */ = {
@@ -341,6 +342,7 @@
 				D2ADA5401E8842E6001A9172 /* Color.swift */,
 			);
 			name = Color;
+			path = Color;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
