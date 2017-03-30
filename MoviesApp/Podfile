@@ -22,7 +22,7 @@ target 'MoviesApp' do
   
   pod 'ReachabilitySwift', '~> 3'
   pod 'DZNEmptyDataSet'
-  pod 'Hero', :git => 'https://github.com/lkzhao/Hero.git'
+  pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
   
 end
 

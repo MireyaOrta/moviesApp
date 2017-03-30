@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController" customModule="MoviesApp" customModuleProvider="target">
             <connections>
-                <outlet property="goToTrailer" destination="ayH-AL-vJ3" id="Jwz-lU-suT"/>
                 <outlet property="movieImageView" destination="yIh-1f-30h" id="YdQ-4R-Zpq"/>
                 <outlet property="movieTitleLabel" destination="N0Z-2A-akv" id="GzN-nD-SXg"/>
                 <outlet property="overviewDetailLabel" destination="Nge-KZ-VQO" id="J8J-Dd-6hd"/>
@@ -107,42 +106,20 @@
                                 <constraint firstItem="X2r-wV-AyP" firstAttribute="top" secondItem="7L0-1Y-wzX" secondAttribute="top" constant="10" id="piW-qT-pEO"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayH-AL-vJ3">
-                            <rect key="frame" x="101" y="546.5" width="173" height="50"/>
-                            <color key="backgroundColor" red="0.97647058819999999" green="0.34901960780000002" blue="0.25882352939999997" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="ha7-uW-CFV"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" name="AvenirNext-Bold" family="Avenir Next" pointSize="17"/>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <inset key="contentEdgeInsets" minX="15" minY="10" maxX="15" maxY="10"/>
-                            <state key="normal" title="Go to home page"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                    <integer key="value" value="5"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="openTrailer:" destination="-1" eventType="touchUpInside" id="XbQ-Tc-av3"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="OAf-cI-kST" firstAttribute="leading" secondItem="5vm-sd-Vfa" secondAttribute="leading" id="8dP-1W-klm"/>
                         <constraint firstAttribute="trailing" secondItem="yIh-1f-30h" secondAttribute="trailing" id="94z-i5-fCm"/>
                         <constraint firstItem="7L0-1Y-wzX" firstAttribute="top" secondItem="OAf-cI-kST" secondAttribute="bottom" id="Fc2-v9-kJ6"/>
                         <constraint firstItem="yIh-1f-30h" firstAttribute="width" secondItem="cbl-LV-qog" secondAttribute="width" id="IJ9-58-G1j"/>
+                        <constraint firstAttribute="bottom" secondItem="7L0-1Y-wzX" secondAttribute="bottom" id="OLZ-ZC-caN"/>
                         <constraint firstItem="5vm-sd-Vfa" firstAttribute="leading" secondItem="yIh-1f-30h" secondAttribute="leading" id="QF4-mN-8Qm"/>
                         <constraint firstItem="OAf-cI-kST" firstAttribute="top" secondItem="5vm-sd-Vfa" secondAttribute="bottom" id="YPa-BL-sVl"/>
-                        <constraint firstItem="ayH-AL-vJ3" firstAttribute="top" secondItem="7L0-1Y-wzX" secondAttribute="bottom" constant="15" id="aGI-qM-e6f"/>
                         <constraint firstItem="OAf-cI-kST" firstAttribute="trailing" secondItem="5vm-sd-Vfa" secondAttribute="trailing" id="aKN-In-g5x"/>
                         <constraint firstItem="yIh-1f-30h" firstAttribute="top" secondItem="cbl-LV-qog" secondAttribute="top" id="cjd-jd-8kh"/>
                         <constraint firstItem="5vm-sd-Vfa" firstAttribute="top" secondItem="yIh-1f-30h" secondAttribute="bottom" id="ftz-87-R6F"/>
-                        <constraint firstAttribute="bottom" secondItem="ayH-AL-vJ3" secondAttribute="bottom" constant="15" id="h3d-Zu-odp"/>
                         <constraint firstAttribute="trailing" secondItem="7L0-1Y-wzX" secondAttribute="trailing" id="iKt-8w-itM"/>
                         <constraint firstItem="yIh-1f-30h" firstAttribute="leading" secondItem="cbl-LV-qog" secondAttribute="leading" id="k29-HY-1IK"/>
-                        <constraint firstItem="ayH-AL-vJ3" firstAttribute="centerX" secondItem="7L0-1Y-wzX" secondAttribute="centerX" id="nmy-PL-Y2y"/>
                         <constraint firstItem="7L0-1Y-wzX" firstAttribute="leading" secondItem="cbl-LV-qog" secondAttribute="leading" id="zEu-qM-yRo"/>
                         <constraint firstItem="5vm-sd-Vfa" firstAttribute="trailing" secondItem="yIh-1f-30h" secondAttribute="trailing" id="zTa-pZ-1Ur"/>
                     </constraints>

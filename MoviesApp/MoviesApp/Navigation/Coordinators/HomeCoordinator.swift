@@ -43,8 +43,8 @@ class HomeCoordinator: Coordinator {
     func showMovieDetail(_ movie: Movie) {
         let movieDetailVM = MovieDetailViewModel()
         movieDetailVM.movie = movie
-        let moviewDetailVC = MovieDetailViewController(viewModel: movieDetailVM)
-        navigationController.pushViewController(moviewDetailVC, animated: true)
+        let movieDetailVC = MovieDetailViewController(viewModel: movieDetailVM)
+        navigationController.pushViewController(movieDetailVC, animated: true)
     }
     
 }

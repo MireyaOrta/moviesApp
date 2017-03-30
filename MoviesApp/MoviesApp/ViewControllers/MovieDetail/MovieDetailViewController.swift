@@ -17,7 +17,6 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var overviewDetailLabel: UILabel!
     @IBOutlet weak var popularityTitleLabel: UILabel!
     @IBOutlet weak var popularityCountLabel: UILabel!
-    @IBOutlet weak var goToTrailer: UIButton!
     
     
     //MARK: - Properties
@@ -54,13 +53,9 @@ class MovieDetailViewController: UIViewController {
     fileprivate func configureView(){
         overviewTitleLabel.text = LocalizableString.overviw.localizedString
         popularityTitleLabel.text = LocalizableString.popularity.localizedString
-        goToTrailer.titleLabel?.text = LocalizableString.trailer.localizedString
-        goToTrailer.backgroundColor = UIColor.lightGray
     }
 
-    @IBAction func openTrailer(_ sender: Any) {
-        
-    }
+
 
 }
 
@@ -80,10 +75,6 @@ extension MovieDetailViewController: MovieDetailViewModelViewDelegate {
             }
             
             popularityCountLabel.text = movie.popularity
-            
-            if let video = movie.video.value, video {
-                goToTrailer.backgroundColor = Color.orange.color
-            }
         }
     }
 }

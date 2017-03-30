@@ -19,6 +19,7 @@ PODS:
     - RealmSwift (~> 2.0)
     - RxSwift (~> 3.0.0)
   - RxSwift (3.0.1)
+  - Spring (1.0.3)
   - Unbox (2.2.0)
   - Wrap (2.0.2)
 
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - RxCocoa (~> 3.0)
   - RxRealm
   - RxSwift (~> 3.0)
+  - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - Unbox (~> 2.2.0)
   - Wrap (~> 2.0)
 
@@ -41,11 +43,17 @@ EXTERNAL SOURCES:
   CellRegistrable:
     :branch: swift3
     :git: https://github.com/KogiMobileSAS/CellRegistrable.git
+  Spring:
+    :branch: swift3
+    :git: https://github.com/MengTo/Spring.git
 
 CHECKOUT OPTIONS:
   CellRegistrable:
     :commit: e495548d02e8016f9f91bc879b17e6ac2540556b
     :git: https://github.com/KogiMobileSAS/CellRegistrable.git
+  Spring:
+    :commit: 3a9227c6e9157e7b47f5ac1ee5abab2a56b50002
+    :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
@@ -60,9 +68,10 @@ SPEC CHECKSUMS:
   RxCocoa: 15a52fc590dcc700cb4a690a633b5c5184ce3a78
   RxRealm: 0965e07d49b8575d16c3a0487c667dfe64ce6a9c
   RxSwift: af5680055c4ad04480189c52d28385b1029493a6
+  Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
   Unbox: 03d7128ce429987986bc08d967e9d5e0da158946
   Wrap: ab30deba122bf5942aca8bc65d91d12d45a901dc
 
-PODFILE CHECKSUM: 191f34cd0e6a0bd47a6071ed1d93bc2df76f71f1
+PODFILE CHECKSUM: 3b147ab036d7b071f6abd49ec5b7f6e8b565d70e
 
 COCOAPODS: 1.1.1

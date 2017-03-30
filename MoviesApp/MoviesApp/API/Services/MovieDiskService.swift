@@ -89,15 +89,8 @@ struct MovieDiskService {
             
             observer.onNext(pMovies)
             observer.onCompleted()
-            
-            
+        
             return Disposables.create()
         }
     }
-    
-
-        
-        
-        
-    
 }

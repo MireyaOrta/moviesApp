@@ -14,6 +14,7 @@ class HomeViewController: UIViewController {
     //MARK: - IBOutlet
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var homeTitleLabel: UILabel!
+    @IBOutlet weak var titleView: UIView!
    
     
     //MARK: - Properties
