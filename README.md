@@ -1,4 +1,4 @@
-# Movile App
+# Mobile App
 
 This is an app get movies from The movie db [here](https://developers.themoviedb.org/), this app show the **Top rated**, **Upcoming** and **Popular Movies**.
 
@@ -54,9 +54,3 @@ Talks about how each class must have responsability for a single part of funcion
 ## Clean code
 
 Doing a code that is abstract, easy to read with is no duplicity and others characteristics that make any project easy to work with. Basically, it's using best practices
-
-
-
-
-
-
